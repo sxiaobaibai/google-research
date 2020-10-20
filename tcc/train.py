@@ -37,7 +37,7 @@ from tcc.utils import setup_train_dir
 from tcc.utils import Stopwatch
 
 
-flags.DEFINE_string('logdir', '/tmp/alignment_logs', 'Path to logs.')
+flags.DEFINE_string('logdir', './tcc/tmp/alignment_logs', 'Path to logs.')
 flags.DEFINE_boolean('defun', True, 'Defun functions in algo for faster '
                      'training.')
 flags.DEFINE_boolean('debug', False, 'Plots detailed summaries on Tensorboard.')
