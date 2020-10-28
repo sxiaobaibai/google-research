@@ -22,19 +22,19 @@ set -x
 
 #pip install -r tcc/requirements.txt
 
-# Downloads Pouring data /tmp/pouring_tfrecords/.
-tcc/dataset_preparation/download_pouring_data.sh
-# Downloads ImageNet pretrained checkpoint (ResNet50v2) to /tmp/
-wget -P ./tcc/tmp/ https://github.com/keras-team/keras-applications/releases/download/resnet/resnet50v2_weights_tf_dim_ordering_tf_kernels_notop.h5
-
-# Make empty directory for logs.
-mkdir ./tcc/tmp/alignment_logs
+## Downloads Pouring data /tmp/pouring_tfrecords/.
+#./tcc/dataset_preparation/download_pouring_data.sh
+## Downloads ImageNet pretrained checkpoint (ResNet50v2) to /tmp/
+#wget -P ./tcc/tmp/ https://github.com/keras-team/keras-applications/releases/download/resnet/resnet50v2_weights_tf_dim_ordering_tf_kernels_notop.h5
+#
+## Make empty directory for logs.
+#mkdir ./tcc/tmp/alignment_logs
 # Copy over demo config to folder.
-cp tcc/configs/demo.yml ./tcc/tmp/alignment_logs/config.yml
+#cp ./tcc/configs/demo.yml ./tcc/tmp/alignment_logs/config.yml
 # Runs training for 10 iterations on the Pouring dataset.
-python -m tcc.train --alsologtostderr --debug
+#python -m tcc.train --alsologtostderr --debug
 # Evaluates all tasks by embedding 4 videos.
-python -m tcc.evaluate --alsologtostderr --max_embs 2 --nocontinuous_eval --visualize
+#python -m tcc.evaluate --alsologtostderr --max_embs 2 --nocontinuous_eval --visualize
 # Extracts embeddings of 4 videos in the val set.
 python -m tcc.extract_embeddings --alsologtostderr --logdir ./tcc/tmp/alignment_logs --dataset pouring --split val --max_embs 4 --keep_data
 # Aligns videos using extracted embeddings.
